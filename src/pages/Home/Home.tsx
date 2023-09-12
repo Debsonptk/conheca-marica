@@ -1,5 +1,7 @@
 import { memo, useEffect } from 'react'
 
+import { Container } from 'react-bootstrap'
+
 import useTitle from 'hooks/useTitle'
 
 const Home: React.FC = () => {
@@ -11,9 +13,9 @@ const Home: React.FC = () => {
   }, [])
 
   return (
-    <div>
-      <h1>Conheça Maricá</h1>
-    </div>
+    <Container>
+      <h1 className="text-center">Conheça Maricá</h1>
+    </Container>
   )
 }
 
