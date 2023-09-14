@@ -2,6 +2,8 @@ import { memo, useEffect } from 'react'
 
 import { Container } from 'react-bootstrap'
 
+import Header from 'components/Header'
+
 import useTitle from 'hooks/useTitle'
 
 const Home: React.FC = () => {
@@ -13,9 +15,12 @@ const Home: React.FC = () => {
   }, [])
 
   return (
-    <Container>
-      <h1 className="text-center">Conheça Maricá</h1>
-    </Container>
+    <>
+      <Header />
+      <Container>
+        <h1>Main</h1>
+      </Container>
+    </>
   )
 }
 
