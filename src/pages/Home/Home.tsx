@@ -2,6 +2,7 @@ import { memo, useEffect } from 'react'
 
 import { Container } from 'react-bootstrap'
 
+import AppSection from 'components/AppSection'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 
@@ -21,6 +22,7 @@ const Home: React.FC = () => {
       <Container>
         <h1>Main</h1>
       </Container>
+      <AppSection />
       <Footer />
     </>
   )

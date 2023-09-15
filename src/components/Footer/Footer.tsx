@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
   return (
     <BackgroundContainer>
       <Container>
-        <Row className="justify-content-between">
+        <Row className="justify-content-between row-cols-1 row-cols-lg-2">
           <Col className="d-flex flex-column">
             <div className="d-flex pt-3 justify-content-center justify-content-lg-start">
               <Link
@@ -24,7 +24,9 @@ const Footer: React.FC = () => {
               >
                 <div className="d-flex">
                   <FaFacebook color="white" size="19px" />
-                  <span className="px-2 d-none d-md-inline">Facebook</span>
+                  <span className="px-2  d-none d-md-inline pb-1">
+                    Facebook
+                  </span>
                 </div>
               </Link>
               <Link
@@ -34,7 +36,7 @@ const Footer: React.FC = () => {
               >
                 <div className="d-flex">
                   <FaInstagram color="white" size="19px" />
-                  <span className="px-2 d-none d-md-inline">Instagram</span>
+                  <span className="px-2  d-none d-md-inline">Instagram</span>
                 </div>
               </Link>
               <Link
@@ -44,7 +46,7 @@ const Footer: React.FC = () => {
               >
                 <div className="d-flex">
                   <FaXTwitter color="white" size="19px" />
-                  <span className="px-2 d-none d-md-inline">Twitter</span>
+                  <span className="px-2  d-none d-md-inline">Twitter</span>
                 </div>
               </Link>
               <Link
@@ -54,7 +56,7 @@ const Footer: React.FC = () => {
               >
                 <div className="d-flex">
                   <FaYoutube color="white" size="19px" />
-                  <span className="px-2 d-none d-md-inline">Youtube</span>
+                  <span className="px-2  d-none d-md-inline">Youtube</span>
                 </div>
               </Link>
             </div>
