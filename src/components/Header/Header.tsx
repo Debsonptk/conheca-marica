@@ -1,7 +1,8 @@
+/* eslint-disable import/order */
 import { memo } from 'react'
 
-// eslint-disable-next-line import/order
 import logo from 'Assets/LogoConhecaMarica.png'
+import logosmall from 'Assets/LogoMarica.png'
 import { Col, Container, Row } from 'react-bootstrap'
 import { FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
@@ -23,7 +24,16 @@ const Header: React.FC = () => {
           </Col>
           <Col className="d-flex">
             <div>
-              <img src={logo} alt="logo" className="pt-4 pb-3 img-fluid" />
+              <img
+                src={logo}
+                alt="logo"
+                className="pt-4 pb-3 img-fluid d-none d-md-block"
+              />
+              <img
+                src={logosmall}
+                alt="logo"
+                className="pt-4 pb-3 img-fluid d-md-none"
+              />
             </div>
           </Col>
           <Col className="d-flex align-items-center justify-content-end">
