@@ -4,7 +4,7 @@ import { memo } from 'react'
 import { IconType } from 'react-icons'
 import { Link } from 'react-router-dom'
 
-import { BackgroundContainer, Button } from './styles'
+import { BackgroundContainer, Button, TextSize } from './styles'
 
 interface IHomeCardProps {
   icon: IconType
@@ -26,9 +26,9 @@ const HomeCard: React.FC<IHomeCardProps> = ({
         <Icon size={55} />
       </div>
       <h5 className="text-center pt-2">{title}</h5>
-      <p className="d-none d-md-flex text-center mb-3 flex-grow-1">
+      <TextSize className="d-none d-md-flex text-center mb-3 flex-grow-1">
         {description}
-      </p>
+      </TextSize>
       <Link to={`${link}`}>
         <Button type="button">Acessar</Button>
       </Link>

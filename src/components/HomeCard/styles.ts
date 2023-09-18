@@ -7,9 +7,13 @@ export const BackgroundContainer = styled(Card)`
   border: none;
   color: #444;
 `
+export const TextSize = styled.p`
+  font-size: 14px;
+  color: #858c94;
+`
 export const Button = styled.button`
   padding: 0px 30px 0px 30px;
-  border-radius: 20px;
+  border-radius: 40px;
   background-color: #fff;
   color: #6ebd00;
   border: 1px solid #6ebd00;

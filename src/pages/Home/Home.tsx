@@ -64,7 +64,7 @@ const Home: React.FC = () => {
                 icon={MdHotel}
                 title="Hotéis e Pousadas"
                 description="Saiba onde se hospedar em Maricá"
-                link="/pontos-turisticos"
+                link="/hoteis-e-pousadas"
               />
             </Col>
             <Col>
@@ -72,7 +72,7 @@ const Home: React.FC = () => {
                 icon={MdRestaurant}
                 title="Bares e Restaurantes"
                 description="Aprecie a gastronomia de Maricá"
-                link="/pontos-turisticos"
+                link="/bares-e-restaurantes"
               />
             </Col>
             <Col>
@@ -80,7 +80,7 @@ const Home: React.FC = () => {
                 icon={FaMotorcycle}
                 title="Delivery"
                 description="Receba o melhor de Maricá no conforto da sua casa"
-                link="/pontos-turisticos"
+                link="/delivery"
               />
             </Col>
             <Col>
@@ -88,7 +88,7 @@ const Home: React.FC = () => {
                 icon={MdStore}
                 title="Comércio Local"
                 description="Veja onde fazer as suas compras"
-                link="/pontos-turisticos"
+                link="/comercio-local"
               />
             </Col>
             <Col>
@@ -96,7 +96,7 @@ const Home: React.FC = () => {
                 icon={GiMicrophone}
                 title="Espaços para Eventos"
                 description="Locais para fazer suas festas ou reuniões"
-                link="/pontos-turisticos"
+                link="/espacos-para-eventos"
               />
             </Col>
             <Col>
@@ -104,7 +104,7 @@ const Home: React.FC = () => {
                 icon={RiCalendar2Fill}
                 title="Eventos"
                 description="Confira o calendário de eventos da cidade"
-                link="/pontos-turisticos"
+                link="/eventos"
               />
             </Col>
             <Col>
@@ -128,7 +128,7 @@ const Home: React.FC = () => {
                 icon={GiGreekTemple}
                 title="Sobre a cidade"
                 description="Conheça mais sobre Maricá"
-                link="/pontos-turisticos"
+                link="/sobre"
               />
             </Col>
           </Row>
