@@ -40,7 +40,7 @@ const AppSection: React.FC = () => {
             </div>
           </Col>
           <Col className="d-flex justify-content-end">
-            <img src={maricaApp} alt="Maricá App" className="img-fluid pt-1" />
+            <img src={maricaApp} alt="Maricá App" className="img-fluid pt-3" />
           </Col>
         </Row>
       </Container>
