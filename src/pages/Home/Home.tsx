@@ -1,14 +1,21 @@
 import { memo, useEffect } from 'react'
 
-import { Carousel, Container } from 'react-bootstrap'
+import { Carousel, Col, Container, Row } from 'react-bootstrap'
+import { FaUmbrellaBeach, FaMotorcycle, FaRoute } from 'react-icons/fa'
+import { GiMicrophone, GiFireFlower, GiGreekTemple } from 'react-icons/gi'
+import { MdHotel, MdRestaurant, MdStore } from 'react-icons/md'
+import { RiCalendar2Fill } from 'react-icons/ri'
 
 import { useBanners } from 'context/BannerContext'
 
 import AppSection from 'components/AppSection'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
+import HomeCard from 'components/HomeCard'
 
 import useTitle from 'hooks/useTitle'
+
+import { ContainerBackground } from './styles'
 
 const Home: React.FC = () => {
   const { banners, isLoading } = useBanners()
@@ -41,9 +48,92 @@ const Home: React.FC = () => {
             </Carousel.Item>
           ))}
       </Carousel>
-      <Container>
-        <h1>Main</h1>
-      </Container>
+      <ContainerBackground>
+        <Container>
+          <Row className="pt-5 pb-5 g-3 row-cols-2 row-cols-lg-3 justify-content-center">
+            <Col>
+              <HomeCard
+                icon={FaUmbrellaBeach}
+                title="Pontos Turísticos"
+                description="Conheça nossas praias, lagoas, grutas e outros pontos turísticos"
+                link="/pontos-turisticos"
+              />
+            </Col>
+            <Col>
+              <HomeCard
+                icon={MdHotel}
+                title="Hotéis e Pousadas"
+                description="Saiba onde se hospedar em Maricá"
+                link="/pontos-turisticos"
+              />
+            </Col>
+            <Col>
+              <HomeCard
+                icon={MdRestaurant}
+                title="Bares e Restaurantes"
+                description="Aprecie a gastronomia de Maricá"
+                link="/pontos-turisticos"
+              />
+            </Col>
+            <Col>
+              <HomeCard
+                icon={FaMotorcycle}
+                title="Delivery"
+                description="Receba o melhor de Maricá no conforto da sua casa"
+                link="/pontos-turisticos"
+              />
+            </Col>
+            <Col>
+              <HomeCard
+                icon={MdStore}
+                title="Comércio Local"
+                description="Veja onde fazer as suas compras"
+                link="/pontos-turisticos"
+              />
+            </Col>
+            <Col>
+              <HomeCard
+                icon={GiMicrophone}
+                title="Espaços para Eventos"
+                description="Locais para fazer suas festas ou reuniões"
+                link="/pontos-turisticos"
+              />
+            </Col>
+            <Col>
+              <HomeCard
+                icon={RiCalendar2Fill}
+                title="Eventos"
+                description="Confira o calendário de eventos da cidade"
+                link="/pontos-turisticos"
+              />
+            </Col>
+            <Col>
+              <HomeCard
+                icon={FaRoute}
+                title="Roteiros turísticos"
+                description="Conheça diversas trilhas ecológicas e de aventura, com variados níveis de dificuldade."
+                link="https://contato.site/5d9bab8/marica-cvb3/paginaprincipal"
+              />
+            </Col>
+            <Col>
+              <HomeCard
+                icon={GiFireFlower}
+                title="Artesanato"
+                description="Conheça e compre as criações dos artesãos de Maricá/RJ"
+                link="http://www.feiraartemarica.com.br/"
+              />
+            </Col>
+            <Col>
+              <HomeCard
+                icon={GiGreekTemple}
+                title="Sobre a cidade"
+                description="Conheça mais sobre Maricá"
+                link="/pontos-turisticos"
+              />
+            </Col>
+          </Row>
+        </Container>
+      </ContainerBackground>
       <AppSection />
       <Footer />
     </>
