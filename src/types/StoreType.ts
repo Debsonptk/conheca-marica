@@ -1,27 +1,27 @@
-export type CategoryBusinessType = {
+export type CategoryStoreType = {
   id: number
   label: string
   count?: number
 }
 
-export type AdressBusinessType = {
+export type AdressStoreType = {
   id: number
   lat: number
   lng: number
   label: string
 }
 
-export type BusinessType = {
+export type StoreType = {
   id: number
   name: string
   capa: string
   lat: number
   lng: number
-  categorias: CategoryBusinessType[]
-  enderecos: AdressBusinessType[]
+  categorias: CategoryStoreType[]
+  enderecos: AdressStoreType[]
 }
 
-export type ItemBusinessType = {
+export type ItemStoreType = {
   addresses: {
     id: number
     label: string

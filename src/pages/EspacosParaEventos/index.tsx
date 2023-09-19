@@ -1,1 +1,1 @@
-export { default } from './EspacosParaEventos'
+export { default } from './EspacosParaEventosContainer'

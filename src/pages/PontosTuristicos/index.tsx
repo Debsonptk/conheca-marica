@@ -1,1 +1,1 @@
-export { default } from './PontosTuristicos'
+export { default } from './PontosTuristicosContainer'
