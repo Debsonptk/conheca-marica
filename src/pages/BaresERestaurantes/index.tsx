@@ -1,1 +1,1 @@
-export { default } from './BaresERestaurantes'
+export { default } from './BaresERestaurantContainer'

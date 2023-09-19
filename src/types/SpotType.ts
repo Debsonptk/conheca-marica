@@ -1,27 +1,27 @@
-export type CategoryTouristSpotType = {
+export type SpotCategoryType = {
   id: number
   label: string
   count?: number
 }
 
-export type AdressTouristSpotType = {
+export type AdressSpotType = {
   id: number
   lat: number
   lng: number
   label: string
 }
 
-export type TouristSpotType = {
+export type SpotType = {
   id: number
   nome: string
   capa: string
   lat: number
   lng: number
-  categorias: CategoryTouristSpotType[]
-  enderecos: AdressTouristSpotType[]
+  categorias: SpotCategoryType[]
+  enderecos: AdressSpotType[]
 }
 
-export type ItemTouristSpotType = {
+export type ItemSpotType = {
   addresses: {
     id: number
     label: string

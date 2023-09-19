@@ -1,1 +1,1 @@
-export { default } from './HoteisEPousadas'
+export { default } from './HoteisEPousadasContainer'
