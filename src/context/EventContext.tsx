@@ -9,13 +9,16 @@ import {
 
 import Api from 'services/Api'
 
-import { CategoryEventType, EventType } from 'types/EventType'
+import { CategoryEventType, EventType, ItemEventType } from 'types/EventType'
 
 interface IContextProps {
   isLoading: boolean
   events: EventType[]
+  event: ItemEventType | null
   eventCategory: CategoryEventType[]
   fetchEvents: () => Promise<void>
+  fetchEvent: (id: number | string) => Promise<void>
+  fetchCategoryEvent: (id?: number) => Promise<void>
 }
 
 interface IEventsProviderProps {
@@ -29,6 +32,7 @@ export const EventsProvider: React.FC<IEventsProviderProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [events, setEvents] = useState<EventType[]>([])
+  const [event, setEvent] = useState<ItemEventType | null>(null)
   const [eventCategory, setEventCategory] = useState<CategoryEventType[]>([])
 
   const fetchEvents = useCallback(async () => {
@@ -38,6 +42,34 @@ export const EventsProvider: React.FC<IEventsProviderProps> = ({
       const response = await Api.get('/eventos')
       setEvents(response.data.collection)
       setEventCategory(response.data.categorias)
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
+  const fetchEvent = useCallback(async (id: number | string) => {
+    setIsLoading(true)
+
+    try {
+      const response = await Api.get(`/eventos/${id}`)
+      setEvent(response.data.item)
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
+  const fetchCategoryEvent = useCallback(async (id?: number) => {
+    setIsLoading(true)
+
+    try {
+      const response = await Api.get(`/eventos/categorias/${id}`)
+      setEventCategory(response.data.collection)
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e)
@@ -57,10 +89,21 @@ export const EventsProvider: React.FC<IEventsProviderProps> = ({
         () => ({
           isLoading,
           events,
+          event,
           eventCategory,
           fetchEvents,
+          fetchEvent,
+          fetchCategoryEvent,
         }),
-        [isLoading, events, eventCategory, fetchEvents],
+        [
+          isLoading,
+          events,
+          event,
+          eventCategory,
+          fetchEvents,
+          fetchEvent,
+          fetchCategoryEvent,
+        ],
       )}
     >
       {children}

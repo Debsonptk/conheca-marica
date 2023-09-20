@@ -1,15 +1,21 @@
 import { memo, useEffect } from 'react'
 
 import { Container } from 'react-bootstrap'
-import { AiOutlineArrowLeft } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+
+import { useEvent } from 'context/EventContext'
 
 import Footer from 'components/Footer'
 import Header from 'components/Header'
+import TagCategory from 'components/TagCategory'
+import Titles from 'components/Titles'
 
 import useTitle from 'hooks/useTitle'
 
+import { ContainerBg } from './styles'
+
 const Eventos: React.FC = () => {
+  const { events, isLoading, eventCategory, fetchEvents, fetchSearchEvents } =
+    useEvent()
   const setTitle = useTitle()
 
   useEffect(() => {
@@ -20,16 +26,21 @@ const Eventos: React.FC = () => {
   return (
     <>
       <Header />
-      <Container>
-        <div className="d-flex align-items-center pt-3">
-          <Link to="/">
-            <div className="d-flex align-items-center">
-              <AiOutlineArrowLeft size={20} color="black" />
-            </div>
-          </Link>
-          <h2 className="px-2">Eventos</h2>
-        </div>
-      </Container>
+      <ContainerBg>
+        <Container>
+          <Titles title="Eventos" />
+          {isLoading && <p className="text-center">LOADING...</p>}
+          <div className="d-flex flex-wrap pt-2 pb-4">
+            {!isLoading &&
+              Array.isArray(eventCategory) &&
+              eventCategory.map((category) => (
+                <div key={category.id}>
+                  <TagCategory category={category} />
+                </div>
+              ))}
+          </div>
+        </Container>
+      </ContainerBg>
       <Footer />
     </>
   )
