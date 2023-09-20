@@ -14,7 +14,7 @@ export const CoverImage = styled.div<ICoverImgProps>`
 export const Card = styled.div`
   background: #fff;
   border-radius: 16px;
-  box-shadow: 1px 1px 10px 1px #ddd;
+  box-shadow: 1px 1px 5px 1px #ddd;
   font-weight: bold;
 
   h2 {
