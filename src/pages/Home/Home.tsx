@@ -1,6 +1,6 @@
 import { memo, useEffect } from 'react'
 
-import { Carousel, Col, Container, Row } from 'react-bootstrap'
+import { Carousel, Col, Container, Row, Spinner } from 'react-bootstrap'
 import { FaUmbrellaBeach, FaMotorcycle, FaRoute } from 'react-icons/fa'
 import { GiMicrophone, GiFireFlower, GiGreekTemple } from 'react-icons/gi'
 import { MdHotel, MdRestaurant, MdStore } from 'react-icons/md'
@@ -30,7 +30,11 @@ const Home: React.FC = () => {
     <>
       <Header />
       <Carousel>
-        {isLoading && <h2>Loading...</h2>}
+        {isLoading && (
+          <div className="d-flex justify-content-center pt-5 pb-5">
+            <Spinner animation="border" variant="secondary" />
+          </div>
+        )}
         {!isLoading &&
           Array.isArray(banners) &&
           banners.map((banner) => (

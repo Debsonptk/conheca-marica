@@ -12,7 +12,7 @@ export type AdressSpaceType = {
 
 export type SpaceType = {
   id: number
-  name: string
+  nome: string
   capa: string
   lat: number
   lng: number

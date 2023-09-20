@@ -13,7 +13,7 @@ export type AdressStoreType = {
 
 export type StoreType = {
   id: number
-  name: string
+  nome: string
   capa: string
   lat: number
   lng: number

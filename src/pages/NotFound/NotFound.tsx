@@ -1,5 +1,9 @@
 import { memo, useEffect } from 'react'
 
+import { Container } from 'react-bootstrap'
+
+import Titles from 'components/Titles'
+
 import useTitle from 'hooks/useTitle'
 
 const NotFound: React.FC = () => {
@@ -10,7 +14,11 @@ const NotFound: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <h1>PÁGINA NÃO ENCONTRADA</h1>
+  return (
+    <Container>
+      <Titles title="PÁGINA NÃO ENCONTRADA" />
+    </Container>
+  )
 }
 
 export default memo(NotFound)

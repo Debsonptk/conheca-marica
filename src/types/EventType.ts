@@ -13,7 +13,7 @@ export type AdressEventType = {
 
 export type EventType = {
   id: number
-  name: string
+  nome: string
   capa: string
   lat: number
   lng: number
