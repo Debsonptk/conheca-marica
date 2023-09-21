@@ -2,19 +2,15 @@ import React, { Suspense } from 'react'
 
 import ReactDOM from 'react-dom/client'
 
-import { EventsProvider } from 'context/EventContext'
-import { SpotsProvider } from 'context/SpotContext'
+import GlobalStyles from 'styles/GlobalStyles'
 
 import App from './App'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
+    <GlobalStyles />
     <Suspense>
-      <SpotsProvider>
-        <EventsProvider>
-          <App />
-        </EventsProvider>
-      </SpotsProvider>
+      <App />
     </Suspense>
   </React.StrictMode>,
 )

@@ -2,32 +2,34 @@ import { memo } from 'react'
 
 import { BrowserRouter, Routes as Switch, Route } from 'react-router-dom'
 
-import BaresERestaurantes from 'pages/BaresERestaurantes'
-import ComercioLocal from 'pages/ComercioLocal'
+import About from 'pages/About'
 import Delivery from 'pages/Delivery'
-import EspacosParaEventos from 'pages/EspacosParaEventos'
-import Eventos from 'pages/Eventos'
-import EventoSelecionado from 'pages/EventoSelecionado/EventoSelecionado'
+import Events from 'pages/Events'
+import EventSelected from 'pages/EventSelected'
 import Home from 'pages/Home'
-import HoteisEPousadas from 'pages/HoteisEPousadas'
+import Hotels from 'pages/Hotels'
 import NotFound from 'pages/NotFound'
-import PontosTuristicos from 'pages/PontosTuristicos'
-import SobreACidade from 'pages/SobreACidade'
+import Restaurants from 'pages/Restaurants'
+import Spaces from 'pages/Spaces'
+import Spots from 'pages/Spots'
+import SpotSelected from 'pages/SpotSelected'
+import Stores from 'pages/Stores'
 
 const Routes: React.FC = () => {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" element={<Home />} />
-        <Route path="/pontos-turisticos" element={<PontosTuristicos />} />
-        <Route path="/hoteis-e-pousadas" element={<HoteisEPousadas />} />
-        <Route path="/bares-e-restaurantes" element={<BaresERestaurantes />} />
-        <Route path="/comercio-local" element={<ComercioLocal />} />
+        <Route path="/pontos-turisticos" element={<Spots />} />
+        <Route path="/pontos-turisticos/:id/:name" element={<SpotSelected />} />
+        <Route path="/hoteis-e-pousadas" element={<Hotels />} />
+        <Route path="/bares-e-restaurantes" element={<Restaurants />} />
+        <Route path="/comercio-local" element={<Stores />} />
         <Route path="/delivery" element={<Delivery />} />
-        <Route path="/espacos-para-eventos" element={<EspacosParaEventos />} />
-        <Route path="/eventos" element={<Eventos />} />
-        <Route path="/eventos/:id/:name" element={<EventoSelecionado />} />
-        <Route path="/sobre" element={<SobreACidade />} />
+        <Route path="/espacos-para-eventos" element={<Spaces />} />
+        <Route path="/eventos" element={<Events />} />
+        <Route path="/eventos/:id/:name" element={<EventSelected />} />
+        <Route path="/sobre" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Switch>
     </BrowserRouter>

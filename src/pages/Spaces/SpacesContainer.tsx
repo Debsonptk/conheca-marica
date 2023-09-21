@@ -2,12 +2,12 @@ import { memo } from 'react'
 
 import { SpacesProvider } from 'context/SpaceContext'
 
-import EspacosParaEventos from './EspacosParaEventos'
+import Page from './Page'
 
 const EspacosParaEventosContainer: React.FC = () => {
   return (
     <SpacesProvider>
-      <EspacosParaEventos />
+      <Page />
     </SpacesProvider>
   )
 }

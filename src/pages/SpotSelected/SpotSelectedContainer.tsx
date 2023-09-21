@@ -2,12 +2,12 @@ import { memo } from 'react'
 
 import { SpotsProvider } from 'context/SpotContext'
 
-import PontosTuristicos from './PontosTuristicos'
+import Page from './Page'
 
 const PontosTuristicosContainer: React.FC = () => {
   return (
     <SpotsProvider>
-      <PontosTuristicos />
+      <Page />
     </SpotsProvider>
   )
 }

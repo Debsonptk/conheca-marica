@@ -2,12 +2,12 @@ import { memo } from 'react'
 
 import { HotelsProvider } from 'context/HotelContext'
 
-import HoteisEPousadas from './HoteisEPousadas'
+import Page from './Page'
 
 const HoteisEPousadasContainer: React.FC = () => {
   return (
     <HotelsProvider>
-      <HoteisEPousadas />
+      <Page />
     </HotelsProvider>
   )
 }

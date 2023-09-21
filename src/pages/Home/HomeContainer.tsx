@@ -2,12 +2,12 @@ import { memo } from 'react'
 
 import { BannersProvider } from 'context/BannerContext'
 
-import Home from './Home'
+import Page from './Page'
 
 const HomeContainer: React.FC = () => {
   return (
     <BannersProvider>
-      <Home />
+      <Page />
     </BannersProvider>
   )
 }

@@ -19,6 +19,7 @@ export type SpotType = {
   lng: number
   categorias: SpotCategoryType[]
   enderecos: AdressSpotType[]
+  image: string
 }
 
 export type ItemSpotType = {

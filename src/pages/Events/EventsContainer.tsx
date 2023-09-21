@@ -2,12 +2,12 @@ import { memo } from 'react'
 
 import { EventsProvider } from 'context/EventContext'
 
-import Eventos from './Eventos'
+import Page from './Page'
 
 const EventosContainer: React.FC = () => {
   return (
     <EventsProvider>
-      <Eventos />
+      <Page />
     </EventsProvider>
   )
 }

@@ -2,7 +2,7 @@ import { memo } from 'react'
 
 import { RestaurantsProvider } from 'context/RestaurantContext'
 
-import BaresERestaurantes from './BaresERestaurantes'
+import BaresERestaurantes from './Page'
 
 const BaresERestaurantContainer: React.FC = () => {
   return (

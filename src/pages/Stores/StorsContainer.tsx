@@ -2,12 +2,12 @@ import { memo } from 'react'
 
 import { StoresProvider } from 'context/StoreContext'
 
-import ComercioLocal from './ComercioLocal'
+import Page from './Page'
 
 const ComercioLocalContainer: React.FC = () => {
   return (
     <StoresProvider>
-      <ComercioLocal />
+      <Page />
     </StoresProvider>
   )
 }
