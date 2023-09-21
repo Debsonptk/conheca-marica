@@ -45,7 +45,7 @@ const EspacosParaEventos: React.FC = () => {
             Array.isArray(spaces) &&
             spaces.map((item) => (
               <Col key={item.id} className="d-flex">
-                <ItemsCard item={item} endPoint="espacos" />
+                <ItemsCard item={item} endPoint="espacos-para-eventos" />
               </Col>
             ))}
         </Row>

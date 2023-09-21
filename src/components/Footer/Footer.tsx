@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
               />
             </div>
             <div className="mt-3 mx-5">
-              <p>
+              <p className="pb-2 pt-1">
                 <Link
                   to="https://www.conhecamarica.com.br/static/media/guia-gastronomico.f9556598.pdf"
                   target="_blank"
