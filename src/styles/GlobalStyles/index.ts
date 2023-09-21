@@ -27,5 +27,4 @@ export default createGlobalStyle`
     a:hover {
         color: inherit;
     }
-
 `

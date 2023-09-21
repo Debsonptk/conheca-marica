@@ -14,8 +14,11 @@ import { CategoryHotelType, HotelType } from 'types/HotelType'
 interface IContextProps {
   isLoading: boolean
   hotels: HotelType[]
-  hotelsCategory: CategoryHotelType[]
+  hotelCategory: CategoryHotelType[]
+  hotel: HotelType | null
   fetchHotels: () => Promise<void>
+  fetchHotel: (id: number | string) => Promise<void>
+  fetchHotelCategory: (id: number) => Promise<void>
 }
 
 interface IHotelsProviderProps {
@@ -29,7 +32,8 @@ export const HotelsProvider: React.FC<IHotelsProviderProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [hotels, setIsHotels] = useState<HotelType[]>([])
-  const [hotelsCategory, setIsHotelCategory] = useState<CategoryHotelType[]>([])
+  const [hotel, setHotel] = useState<HotelType | null>(null)
+  const [hotelCategory, setIsHotelCategory] = useState<CategoryHotelType[]>([])
 
   const fetchHotels = useCallback(async () => {
     setIsLoading(true)
@@ -38,6 +42,34 @@ export const HotelsProvider: React.FC<IHotelsProviderProps> = ({
       const response = await Api.get('/hoteis-e-pousadas')
       setIsHotels(response.data.collection)
       setIsHotelCategory(response.data.categorias)
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
+  const fetchHotel = useCallback(async (id: number | string) => {
+    setIsLoading(true)
+
+    try {
+      const response = await Api.get(`/hoteis-e-pousadas/${id}`)
+      setHotel(response.data.item)
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
+  const fetchHotelCategory = useCallback(async (id: number) => {
+    setIsLoading(true)
+
+    try {
+      const response = await Api.get(`/hoteis-e-pousadas/categorias/${id}`)
+      setIsHotels(response.data.collection)
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e)
@@ -57,10 +89,21 @@ export const HotelsProvider: React.FC<IHotelsProviderProps> = ({
         () => ({
           isLoading,
           hotels,
-          hotelsCategory,
+          hotel,
+          hotelCategory,
           fetchHotels,
+          fetchHotel,
+          fetchHotelCategory,
         }),
-        [isLoading, hotels, hotelsCategory, fetchHotels],
+        [
+          isLoading,
+          hotels,
+          hotelCategory,
+          fetchHotels,
+          hotel,
+          fetchHotel,
+          fetchHotelCategory,
+        ],
       )}
     >
       {children}

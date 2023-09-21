@@ -30,14 +30,17 @@ const ItemsCard: React.FC<IItemsProps> = ({ item, endPoint }) => {
         <CoverImage cover={item.capa} />
       </Ratio>
       <div className="px-4 pt-4">
-        <Link to={`/${endPoint}/${item.id}`} className="text-decoration-none">
+        <Link
+          to={`/${endPoint}/${item.id}/${item.nome}`}
+          className="text-decoration-none"
+        >
           <h2>{item.nome}</h2>
         </Link>
-        <div className="d-flex flex-wrap pb-2">
+        <Link to="/" className="d-flex flex-wrap pb-2 text-decoration-none">
           {item.categorias.slice(0, 4).map((category) => (
             <CategoryStyle key={category.id}>{category.label}</CategoryStyle>
           ))}
-        </div>
+        </Link>
         <AdressStyle className="flex-grow-1">
           {item.enderecos.map((address) => (
             <p key={address.id} className="fs-5 text-muted">

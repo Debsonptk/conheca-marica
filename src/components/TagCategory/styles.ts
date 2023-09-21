@@ -8,6 +8,6 @@ export const TagContainer = styled.p`
   padding: 4px 20px 4px 20px;
 
   &:hover {
-    background-color: #1bf710;
+    background-color: #b5e030;
   }
 `

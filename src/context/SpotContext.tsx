@@ -13,9 +13,12 @@ import { SpotCategoryType, SpotType } from 'types/SpotType'
 
 interface IContextProps {
   isLoading: boolean
+  spot: SpotType | null
   spots: SpotType[]
   spotCategory: SpotCategoryType[]
   fetchSpots: () => Promise<void>
+  fetchSpot: (id: number | string) => Promise<void>
+  fetchSpotCategory: (id: number) => Promise<void>
 }
 
 interface ISpotProviderProps {
@@ -26,6 +29,7 @@ export const ReactContext = createContext<IContextProps>({} as IContextProps)
 
 export const SpotsProvider: React.FC<ISpotProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false)
+  const [spot, setSpot] = useState<SpotType | null>(null)
   const [spots, setSpots] = useState<SpotType[]>([])
   const [spotCategory, setSpotCategory] = useState<SpotCategoryType[]>([])
 
@@ -44,6 +48,34 @@ export const SpotsProvider: React.FC<ISpotProviderProps> = ({ children }) => {
     }
   }, [])
 
+  const fetchSpot = useCallback(async () => {
+    setIsLoading(true)
+
+    try {
+      const response = await Api.get('/pontos')
+      setSpot(response.data.item)
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
+  const fetchSpotCategory = useCallback(async () => {
+    setIsLoading(true)
+
+    try {
+      const response = await Api.get('/pontos')
+      setSpots(response.data.collection)
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
   useEffect(() => {
     fetchSpots()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,11 +86,22 @@ export const SpotsProvider: React.FC<ISpotProviderProps> = ({ children }) => {
       value={useMemo(
         () => ({
           isLoading,
+          spot,
           spots,
           spotCategory,
           fetchSpots,
+          fetchSpot,
+          fetchSpotCategory,
         }),
-        [isLoading, spots, spotCategory, fetchSpots],
+        [
+          isLoading,
+          spots,
+          spot,
+          spotCategory,
+          fetchSpots,
+          fetchSpot,
+          fetchSpotCategory,
+        ],
       )}
     >
       {children}

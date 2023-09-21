@@ -13,9 +13,12 @@ import { CategoryRestaurantType, RestaurantType } from 'types/RestaurantType'
 
 interface IContextProps {
   restaurants: RestaurantType[]
+  restaurant: RestaurantType | null
   isLoading: boolean
   restaurantCategory: CategoryRestaurantType[]
   fetchRestaurants: () => Promise<void>
+  fetchRestaurant: (id: number | string) => Promise<void>
+  fetchRestaurantCategory: (id: number) => Promise<void>
 }
 
 interface IRestaurantProviderProps {
@@ -28,6 +31,7 @@ export const RestaurantsProvider: React.FC<IRestaurantProviderProps> = ({
   children,
 }) => {
   const [restaurants, setRestaurants] = useState<RestaurantType[]>([])
+  const [restaurant, setRestaurant] = useState<RestaurantType | null>(null)
   const [restaurantCategory, setRestaurantCategory] = useState<
     CategoryRestaurantType[]
   >([])
@@ -48,6 +52,34 @@ export const RestaurantsProvider: React.FC<IRestaurantProviderProps> = ({
     }
   }, [])
 
+  const fetchRestaurant = useCallback(async (id: number | string) => {
+    setIsLoading(true)
+
+    try {
+      const response = await Api.get(`/restaurantes/${id}`)
+      setRestaurant(response.data.item)
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
+  const fetchRestaurantCategory = useCallback(async (id?: number) => {
+    setIsLoading(true)
+
+    try {
+      const response = await Api.get(`/restaurantes/categorias/${id}`)
+      setRestaurantCategory(response.data.collection)
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
   useEffect(() => {
     fetchRestaurants()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,12 +89,23 @@ export const RestaurantsProvider: React.FC<IRestaurantProviderProps> = ({
     <ReactContext.Provider
       value={useMemo(
         () => ({
+          restaurant,
           restaurants,
           restaurantCategory,
           isLoading,
           fetchRestaurants,
+          fetchRestaurant,
+          fetchRestaurantCategory,
         }),
-        [restaurants, isLoading, restaurantCategory, fetchRestaurants],
+        [
+          restaurant,
+          restaurants,
+          isLoading,
+          restaurantCategory,
+          fetchRestaurants,
+          fetchRestaurant,
+          fetchRestaurantCategory,
+        ],
       )}
     >
       {children}

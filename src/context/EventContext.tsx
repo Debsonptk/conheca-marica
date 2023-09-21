@@ -56,6 +56,7 @@ export const EventsProvider: React.FC<IEventsProviderProps> = ({
     try {
       const response = await Api.get(`/eventos/${id}`)
       setEvent(response.data.item)
+      setEventCategory(response.data.categorias)
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e)

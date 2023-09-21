@@ -23,7 +23,7 @@ const Header: React.FC = () => {
             </div>
           </Col>
           <Col className="d-flex">
-            <div>
+            <Link to="/">
               <img
                 src={logo}
                 alt="logo"
@@ -34,7 +34,7 @@ const Header: React.FC = () => {
                 alt="logo"
                 className="pt-4 pb-3 img-fluid d-md-none"
               />
-            </div>
+            </Link>
           </Col>
           <Col className="d-flex align-items-center justify-content-end">
             <div>
