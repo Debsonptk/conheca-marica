@@ -1,0 +1,74 @@
+/* eslint-disable import/no-unresolved */
+import { memo } from 'react'
+
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+
+import { ItemEventType } from 'types/EventType'
+import { ItemHotelType } from 'types/HotelType'
+import { ItemRestaurantType } from 'types/RestaurantType'
+import { ItemSpaceType } from 'types/SpaceType'
+import { ItemSpotType } from 'types/SpotType'
+
+import { CoverBanner } from './styles'
+
+interface IItemsProps {
+  banner:
+    | ItemEventType
+    | ItemHotelType
+    | ItemRestaurantType
+    | ItemSpaceType
+    | ItemSpotType
+}
+
+const BannerCarousel: React.FC<IItemsProps> = ({ banner }) => {
+  const responsive = [
+    {
+      breakpoint: 1400,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+      },
+    },
+    {
+      breakpoint: 750,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 2,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ]
+  return (
+    <Slider
+      className="mb-4"
+      dots
+      infinite
+      speed={500}
+      autoplay
+      autoplaySpeed={3000}
+      slidesToShow={4}
+      slidesToScroll={2}
+      initialSlide={0}
+      responsive={responsive}
+      pauseOnHover
+    >
+      {banner.images.map((img) => (
+        <div key={img.id}>
+          <CoverBanner style={{ backgroundImage: `url(${img.src})` }} />
+        </div>
+      ))}
+    </Slider>
+  )
+}
+
+export default memo(BannerCarousel)

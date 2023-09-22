@@ -79,7 +79,7 @@ export const StoresProvider: React.FC<IStoreProviderProps> = ({ children }) => {
   useEffect(() => {
     fetchStores()
     // eslint-disable-next-line prettier/prettier, react-hooks/exhaustive-deps
-  },[])
+  }, [])
 
   return (
     <ReactContext.Provider
