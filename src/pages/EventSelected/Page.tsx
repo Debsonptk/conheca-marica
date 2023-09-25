@@ -1,11 +1,11 @@
 import { memo, useEffect } from 'react'
 
-import AppleStore from 'Assets/AppleStore.png'
-import GooglePlay from 'Assets/GooglePlay.png'
 import { Col, Container, Row, Spinner } from 'react-bootstrap'
 import { FaRegMoneyBillAlt } from 'react-icons/fa'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { Link, useParams } from 'react-router-dom'
+import GooglePlay from 'Assets/GooglePlay.png'
+import AppleStore from 'Assets/AppleStore.png'
 
 import { useEvent } from 'context/EventContext'
 
@@ -111,14 +111,20 @@ const EventoSelecionado: React.FC = () => {
               <div>
                 <h5 className="pt-3 pb-2">Conheça nosso app</h5>
                 <div className="d-flex pb-3">
-                  <Link to="https://play.google.com/store/apps/details?id=com.marica2030.app">
+                  <Link
+                    to="https://play.google.com/store/apps/details?id=com.marica2030.app"
+                    target="_blank"
+                  >
                     <img
                       src={GooglePlay}
                       alt="GooglePlay"
                       className="img-fluid"
                     />
                   </Link>
-                  <Link to="https://apps.apple.com/br/app/maric%C3%A1-oficial/id1493299199">
+                  <Link
+                    to="https://apps.apple.com/br/app/maric%C3%A1-oficial/id1493299199"
+                    target="_blank"
+                  >
                     <img
                       src={AppleStore}
                       alt="GooglePlay"
