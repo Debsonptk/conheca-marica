@@ -36,8 +36,8 @@ const Header: React.FC = () => {
               />
             </Link>
           </Col>
-          <Col className="d-flex align-items-center justify-content-end">
-            <div>
+          <Col className="d-none d-md-flex d-flex align-items-center justify-content-end">
+            <div className="">
               <Link
                 to="https://www.facebook.com/prefeiturademarica?_rdc=1&_rdr"
                 target="_blank"

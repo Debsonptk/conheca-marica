@@ -38,6 +38,8 @@ export type ItemEventType = {
     icone: string
     label: string
   }[]
+  datahora_inicio_f: string
+  datahora_fim_f: string
   formas_pagamento: []
   gratuito: number
   horario_funcionamento: []
