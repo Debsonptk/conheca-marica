@@ -1,7 +1,5 @@
-/* eslint-disable import/no-unresolved */
 import { memo } from 'react'
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
