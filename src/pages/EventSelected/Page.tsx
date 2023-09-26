@@ -1,11 +1,11 @@
 import { memo, useEffect } from 'react'
 
+import AppleStore from 'Assets/AppleStore.png'
+import GooglePlay from 'Assets/GooglePlay.png'
 import { Col, Container, Row, Spinner } from 'react-bootstrap'
 import { FaRegMoneyBillAlt } from 'react-icons/fa'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { Link, useParams } from 'react-router-dom'
-import GooglePlay from 'Assets/GooglePlay.png'
-import AppleStore from 'Assets/AppleStore.png'
 
 import { useEvent } from 'context/EventContext'
 

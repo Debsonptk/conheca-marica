@@ -1,4 +1,3 @@
-/* eslint-disable import/order */
 import { memo } from 'react'
 
 import maricarecebe from 'Assets/MaricaRecebe.png'
