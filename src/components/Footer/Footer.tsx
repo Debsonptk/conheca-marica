@@ -23,9 +23,7 @@ const Footer: React.FC = () => {
               >
                 <div className="d-flex">
                   <FaFacebook color="white" size="19px" />
-                  <span className="px-2  d-none d-md-inline pb-1">
-                    Facebook
-                  </span>
+                  <span className="px-2  d-none d-md-inline pb-1">Faceboo</span>
                 </div>
               </Link>
               <Link
