@@ -5,14 +5,12 @@ interface IMenuProps {
 }
 
 export const NavSection = styled.div`
-  font-family: roboto, sans-serif;
-  font-size: 14px;
   font-weight: 400;
   display: block;
-  font-size: 14px;
-  color: black;
+  font-size: 16px;
+  color: #191919;
+  background-color: transparent;
   font-weight: 700;
-  text-transform: uppercase;
 `
 
 export const MenuMb = styled.div<IMenuProps>`
@@ -21,7 +19,7 @@ export const MenuMb = styled.div<IMenuProps>`
   top: 0;
   left: ${(props) => (props.$isMenuOpened ? 0 : -75)}%;
   padding: 0px;
-  width: 75%;
+  width: 25%;
   transition: all 0.5s ease-out;
   z-index: 10;
   > svg {
@@ -31,14 +29,14 @@ export const MenuMb = styled.div<IMenuProps>`
 
   a,
   a:visited {
-    color: black;
+    color: #191919;
+    background-color: transparent;
   }
 `
 export const MenuOverlay = styled.div<IMenuProps>`
   opacity: ${(props) => (props.$isMenuOpened ? 1 : 0)};
   visibility: ${(props) => (props.$isMenuOpened ? 'visible' : 'hidden')};
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: all 0.2s ease-out;
+  transition: all 0.1s ease-out;
   z-index: 5;
   top: 0;
   height: 100vh;
