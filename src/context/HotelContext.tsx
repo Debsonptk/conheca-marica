@@ -9,13 +9,13 @@ import {
 
 import Api from 'services/Api'
 
-import { CategoryHotelType, HotelType } from 'types/HotelType'
+import { CategoryHotelType, HotelType, ItemHotelType } from 'types/HotelType'
 
 interface IContextProps {
   isLoading: boolean
   hotels: HotelType[]
   hotelCategory: CategoryHotelType[]
-  hotel: HotelType | null
+  hotel: ItemHotelType | null
   fetchHotels: () => Promise<void>
   fetchHotel: (id: number | string) => Promise<void>
   fetchHotelCategory: (id: number) => Promise<void>
@@ -32,7 +32,7 @@ export const HotelsProvider: React.FC<IHotelsProviderProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [hotels, setIsHotels] = useState<HotelType[]>([])
-  const [hotel, setHotel] = useState<HotelType | null>(null)
+  const [hotel, setHotel] = useState<ItemHotelType | null>(null)
   const [hotelCategory, setIsHotelCategory] = useState<CategoryHotelType[]>([])
 
   const fetchHotels = useCallback(async () => {

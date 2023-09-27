@@ -2,6 +2,7 @@ import { memo, useEffect } from 'react'
 
 import AppleStore from 'Assets/AppleStore.png'
 import GooglePlay from 'Assets/GooglePlay.png'
+import { getDate, getHours, getYear } from 'date-fns'
 import { Col, Container, Row, Spinner } from 'react-bootstrap'
 import { FaRegMoneyBillAlt } from 'react-icons/fa'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
@@ -14,6 +15,14 @@ import Header from 'components/Header'
 import TagCategory from 'components/TagCategory'
 import Titles from 'components/Titles'
 
+import {
+  formatEndDate,
+  formatStartDate,
+  getMonthAbbreviation,
+  getMonthName,
+  normalizeMinutes,
+} from 'helpers'
+
 import useTitle from 'hooks/useTitle'
 
 import { ContainerBg } from './styles'
@@ -24,9 +33,9 @@ const EventoSelecionado: React.FC = () => {
   const { id } = useParams()
 
   useEffect(() => {
-    setTitle('Evento | Conheça Maricá')
+    setTitle(`${event?.nome} | Conheça Maricá`)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [event?.nome])
 
   useEffect(() => {
     if (id) fetchEvent(id)
@@ -49,11 +58,11 @@ const EventoSelecionado: React.FC = () => {
                 <span className="px-4">Eventos</span>
                 <Titles title={event?.nome} />
               </div>
-              <div className="d-flex flex-wrap">
+              <div className="d-flex flex-wrap pb-4">
                 {!isLoading &&
                   Array.isArray(event?.categorias) &&
                   event?.categorias.map((category) => (
-                    <div>
+                    <div key={category.id}>
                       <TagCategory category={category} />
                     </div>
                   ))}
@@ -61,7 +70,46 @@ const EventoSelecionado: React.FC = () => {
               {event?.datahora_inicio_f && event.datahora_fim_f && (
                 <div className="d-flex">
                   <div className="d-flex flex-column align-items-center me-3">
-                    <span style={{ color: '#dc3545' }}>Loading...</span>
+                    <span style={{ color: '#dc3545' }}>
+                      {getMonthAbbreviation(
+                        formatStartDate(event.datahora_inicio_f),
+                      )}
+                    </span>
+                    <span>
+                      {getDate(
+                        new Date(formatStartDate(event.datahora_inicio_f)),
+                      )}
+                    </span>
+                  </div>
+                  <div>
+                    <div>
+                      De:{' '}
+                      {`${getDate(
+                        new Date(formatStartDate(event.datahora_inicio_f)),
+                      )} de ${getMonthName(
+                        formatStartDate(event.datahora_inicio_f),
+                      )} de ${getYear(
+                        new Date(formatStartDate(event.datahora_inicio_f)),
+                      )}, às ${getHours(
+                        new Date(formatStartDate(event.datahora_inicio_f)),
+                      )}:${`${normalizeMinutes(
+                        new Date(formatStartDate(event.datahora_inicio_f)),
+                      )}`}h`}
+                    </div>
+                    <div>
+                      Até:{' '}
+                      {`${getDate(
+                        new Date(formatEndDate(event.datahora_fim_f)),
+                      )} de ${getMonthName(
+                        formatEndDate(event.datahora_fim_f),
+                      )} de ${getYear(
+                        new Date(formatEndDate(event.datahora_fim_f)),
+                      )}, às ${getHours(
+                        new Date(formatEndDate(event.datahora_fim_f)),
+                      )}:${`${normalizeMinutes(
+                        new Date(formatStartDate(event.datahora_inicio_f)),
+                      )}`}h`}
+                    </div>
                   </div>
                 </div>
               )}
@@ -76,7 +124,7 @@ const EventoSelecionado: React.FC = () => {
                     </div>
                     <div>
                       {event?.addresses.map((i) => (
-                        <p
+                        <div
                           className="fs-5 d-flex align-items-center mt-2"
                           key={i.id}
                         >
@@ -87,7 +135,7 @@ const EventoSelecionado: React.FC = () => {
                             />
                           </div>
                           {i.label}
-                        </p>
+                        </div>
                       ))}
                     </div>
                     {event?.gratuito === 1 && (

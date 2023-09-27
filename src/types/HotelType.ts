@@ -19,45 +19,57 @@ export type HotelType = {
   lng: number
   categorias: CategoryHotelType[]
   enderecos: AdressHotelType[]
+  descricao_t: string
 }
 
 export type ItemHotelType = {
-  addresses: {
-    id: number
-    label: string
-    lat: number
-    lng: number
-  }[]
-  categorias: {
-    id: number
-    label: string
-  }[]
+  id: string
+  nome: string
+  email: string
+  site: string
+  quartos: number
+  leitos: number | null
+  cafe_manha: boolean
+  cafe_hospedes: boolean
+  almoco: boolean
+  almoco_hospedes: boolean
+  jantar: boolean
+  jantar_hospedes: boolean
   descricao_t: string
-  dicas_t: string
+  addresses: {
+    id: string
+    lat: string
+    lng: string
+    label: string
+  }[]
+  images: {
+    id: string
+    legenda: {
+      pt_BR: string | null
+    }[]
+    ordem: string
+    src: string
+  }[]
+  horario_funcionamento: []
+  phones: {
+    id: string
+    nome: string
+    whatsapp: boolean
+    ordem: boolean
+    number: string
+  }[]
+  categorias: CategoryHotelType[]
   estruturas: {
     icone: string
     label: string
   }[]
-  formas_pagamento: []
-  gratuito: number
-  horario_funcionamento: []
-  id: number
-  images: {
-    id: number
-    src: string
-  }[]
-  nome: string
-  panorama: []
-  phones: {
-    id: number
-    nome: string
-    number: string
-    order: number
-    whatsapp: boolean
+  formas_pagamento: {
+    icone: string
+    label: string
   }[]
   redes: {
-    icone: string
     nome: string
+    icone: string
     url: string
     user: string
   }[]
@@ -65,7 +77,5 @@ export type ItemHotelType = {
     icone: string
     label: string
   }[]
-  viajantes: {
-    label: string
-  }[]
+  panoramas: []
 }

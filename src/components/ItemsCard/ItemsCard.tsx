@@ -3,6 +3,8 @@ import { memo } from 'react'
 import { Ratio } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
+import { strToSlug } from 'helpers'
+
 import { EventType } from 'types/EventType'
 import { HotelType } from 'types/HotelType'
 import { RestaurantType } from 'types/RestaurantType'
@@ -31,7 +33,7 @@ const ItemsCard: React.FC<IItemsProps> = ({ item, endPoint }) => {
       </Ratio>
       <div className="px-4 pt-4">
         <Link
-          to={`/${endPoint}/${item.id}/${item.nome}`}
+          to={`/${endPoint}/${item.id}/${strToSlug(item.nome)}`}
           className="text-decoration-none"
         >
           <h2>{item.nome}</h2>
