@@ -3,11 +3,16 @@ import { memo, useEffect } from 'react'
 import AppleStore from 'Assets/AppleStore.png'
 import GooglePlay from 'Assets/GooglePlay.png'
 import { Col, Container, Row, Spinner } from 'react-bootstrap'
-import { AiOutlineMail } from 'react-icons/ai'
+import { AiOutlineCheckCircle, AiOutlineMail } from 'react-icons/ai'
+import { BiSolidBowlHot } from 'react-icons/bi'
 import { BsFacebook, BsTelephone, BsWhatsapp } from 'react-icons/bs'
+import { GiKnifeFork } from 'react-icons/gi'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { IoMdKey } from 'react-icons/io'
+import { MdHotel } from 'react-icons/md'
+import { RiCupFill } from 'react-icons/ri'
 import { TbWorld } from 'react-icons/tb'
+import SVG from 'react-inlinesvg'
 import { Link, useParams } from 'react-router-dom'
 
 import { useHotels } from 'context/HotelContext'
@@ -64,114 +69,184 @@ const HoteisEPousadas: React.FC = () => {
                   <p>{hotel?.descricao_t}</p>
                 </div>
                 <div>
-                  {Array.isArray(hotel?.addresses) && (
-                    <>
-                      <div className="border-bottom border-secondary mb-3 pt-3">
-                        <h4 className="pt-3">Sobre</h4>
-                      </div>
-                      <div className="pb-2">
-                        {hotel?.addresses.map((i) => (
-                          <div
-                            className="fs-3rem d-flex align-items-center mt-2"
-                            key={i.id}
-                          >
-                            <div className="px-3">
+                  <div className="border-bottom border-secondary mb-3 pt-3">
+                    <h4>Sobre</h4>
+                  </div>
+                  <div>
+                    {hotel?.addresses != null && (
+                      <div className="pt-1 pb-3">
+                        {hotel.addresses.map((adress) => (
+                          <div className="d-flex" key={adress.id}>
+                            <div className="">
                               <HiOutlineLocationMarker
-                                size={30}
+                                size={25}
                                 color="#6ebd00"
                               />
+                              <span className="px-1">{adress.label}</span>
                             </div>
-                            {i.label}
                           </div>
                         ))}
                       </div>
-                    </>
-                  )}
-                  {hotel?.phones != null && (
-                    <>
-                      {hotel.phones.map((phone) => (
-                        <div key={phone.id} className="d-flex">
-                          <div className="px-3">
-                            {phone.whatsapp === true ? (
-                              <BsWhatsapp
-                                size={22}
-                                color="#6ebd00"
-                                className="me-2"
-                              />
-                            ) : (
-                              <BsTelephone
-                                size={22}
-                                color="#6ebd00"
-                                className="me-2"
-                              />
-                            )}
+                    )}
+                    {hotel?.phones != null && (
+                      <>
+                        {hotel?.phones.map((phone) => (
+                          <div className="d-flex" key={phone.id}>
+                            <div className="px-1">
+                              {phone.whatsapp === true ? (
+                                <div className="pb-3">
+                                  <BsWhatsapp size={22} color="#6ebd00" />
+                                </div>
+                              ) : (
+                                <div className="pb-3">
+                                  <BsTelephone size={22} color="#6ebd00" />
+                                </div>
+                              )}
+                            </div>
+                            <div className="d-flex flex-column">
+                              <p className="d-flex text-start me-3 pb-3">
+                                {phone.nome} &nbsp;{phone.number}
+                              </p>
+                            </div>
                           </div>
-                          <div
-                            className="d-flex flex-column pb-3"
-                            key={phone.id}
-                          >
-                            <p className="d-flex text-start me-3 ">
-                              {phone.nome} &nbsp;{phone.number}
-                            </p>
-                          </div>
+                        ))}{' '}
+                      </>
+                    )}
+                    {hotel?.email != null && (
+                      <div className="d-flex">
+                        <div>
+                          <AiOutlineMail size={22} color="#6ebd00" />
                         </div>
-                      ))}{' '}
-                    </>
-                  )}
-                  {hotel?.email != null && (
-                    <div className="d-flex px-3">
-                      <AiOutlineMail
-                        size={22}
-                        color="#6ebd00"
-                        className="me-2"
-                      />
-                      <span className="px-3">{hotel.email}</span>
-                    </div>
-                  )}
-                  {hotel?.site != null && (
-                    <div className="d-flex px-3 pt-2">
-                      <TbWorld size={22} color="#6ebd00" className="me-2" />
-                      <Link
-                        to={`https://${hotel.site}`}
-                        target="_blank"
-                        className="px-3 custom-link"
-                      >
-                        {hotel.site}
-                      </Link>
-                    </div>
-                  )}
-                  {hotel?.redes != null && (
-                    <>
-                      {hotel.redes.map((rede) => (
-                        <div key={rede.nome}>
-                          <div className="d-flex px-3 pt-2">
-                            <BsFacebook
-                              size={22}
-                              color="#6ebd00"
-                              className="me-2"
-                            />
+                        <span className="px-1">{hotel?.email}</span>
+                      </div>
+                    )}
+                    {hotel?.site != null && (
+                      <div className="d-flex mt-3">
+                        <div>
+                          <TbWorld size={22} color="#6ebd00" />
+                        </div>
+                        <Link
+                          to={`https://${hotel.site}`}
+                          target="_blank"
+                          className=" text-decoration-none px-1 custom-link"
+                        >
+                          {hotel?.site}
+                        </Link>
+                      </div>
+                    )}
+                    {hotel?.redes != null && (
+                      // eslint-disable-next-line react/jsx-no-useless-fragment
+                      <>
+                        {hotel?.redes.map((rede) => (
+                          <div className="d-flex mt-3" key={rede.nome}>
+                            <div>
+                              <BsFacebook size={22} color="#6ebd00" />
+                            </div>
                             <Link
                               to={`https://www.facebook.com/${rede.user}`}
                               target="_blank"
-                              className="px-3 custom-link"
+                              className="text-decoration-none custom-link"
                             >
-                              {rede.user}
+                              <div className="px-1">{rede.user}</div>
                             </Link>
                           </div>
+                        ))}
+                      </>
+                    )}
+                  </div>
+                  <div className="border-bottom border-secondary mb-3 pt-3">
+                    <h4>Comodidades</h4>
+                  </div>
+                  <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
+                    <Col className="pb-3">
+                      <div>
+                        {hotel?.quartos && (
+                          <div className="d-flex">
+                            <IoMdKey size={28} color="#6ebd00" />
+                            <span className="px-1">
+                              {hotel?.quartos} quartos
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </Col>
+                    <Col className="pb-3">
+                      <div>
+                        {hotel?.leitos && (
+                          <div className="d-flex">
+                            <MdHotel size={22} color="#6ebd00" />
+                            <span className="px-1">{hotel?.leitos} leitos</span>
+                          </div>
+                        )}
+                      </div>
+                    </Col>
+                    <Col className="pb-3">
+                      <div>
+                        {hotel?.cafe_manha === true && (
+                          <div className="d-flex">
+                            <RiCupFill size={22} color="#6ebd00" />
+                            <div className="d-flex flex-column">
+                              <span className="px-1">Café da manhã</span>
+                              <p>Aceita não-hóspedes </p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </Col>
+                    <Col className="pb-3">
+                      {hotel?.almoco === true && (
+                        <div className="d-flex">
+                          <GiKnifeFork size={22} color="#6ebd00" />
+                          <div className="d-flex flex-column">
+                            <span className="px-1">Almoço</span>
+                            <p>Aceita não-hóspedes </p>
+                          </div>
                         </div>
-                      ))}
-                    </>
-                  )}
-                  {hotel?.quartos && (
+                      )}
+                    </Col>
+                    <Col className="pb-3">
+                      {hotel?.jantar === true && (
+                        <div className="d-flex">
+                          <BiSolidBowlHot size={22} color="#6ebd00" />
+                          <div className="d-flex flex-column">
+                            <span className="px-1">Jantar</span>
+                            <p>Aceita não-hóspedes </p>
+                          </div>
+                        </div>
+                      )}
+                    </Col>
+                  </Row>
+                  {hotel?.estruturas && (
                     <>
                       <div className="border-bottom border-secondary mb-3 pt-3">
-                        <h4 className="pt-3">Comodidades</h4>
+                        <h4>Estruturas</h4>
                       </div>
-                      <div>
-                        <div className="d-flex px-3 pt-2">
-                          <IoMdKey size={28} className="me-2" color="#6ebd00" />
-                        </div>
+                      <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
+                        {hotel.estruturas.map((structure) => (
+                          <Col
+                            key={structure.label}
+                            className="d-flex px-3 pb-3"
+                          >
+                            <SVG src={structure.icone} fill="#6ebd00" />
+                            <p className="px-2">{structure.label}</p>
+                          </Col>
+                        ))}
+                      </Row>
+                    </>
+                  )}
+                  {hotel?.formas_pagamento && (
+                    <>
+                      <div className="border-bottom border-secondary mb-3 pt-3">
+                        <h4>Formas de Pagamento</h4>
                       </div>
+                      <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
+                        {hotel.formas_pagamento.map((pay) => (
+                          <Col key={pay.label} className="d-flex px-3 pb-3">
+                            <AiOutlineCheckCircle size={22} color="#6ebd00" />
+                            <p className="px-2">{pay.label}</p>
+                          </Col>
+                        ))}
+                      </Row>
                     </>
                   )}
                 </div>
