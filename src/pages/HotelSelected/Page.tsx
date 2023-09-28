@@ -260,6 +260,23 @@ const HoteisEPousadas: React.FC = () => {
                       </Row>
                     </>
                   )}
+                  {hotel &&
+                    hotel?.restricoes &&
+                    hotel?.restricoes.length > 0 && (
+                      <>
+                        <div className="border-bottom border-secondary mb-3 pt-3">
+                          <h4>Restrições</h4>
+                        </div>
+                        <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
+                          {hotel.restricoes.map((i) => (
+                            <Col key={i?.label} className="d-flex px-3 pb-3">
+                              <SVG src={i.icone} fill="#6ebd00" />
+                              <p className="px-2">{i.label}</p>
+                            </Col>
+                          ))}
+                        </Row>
+                      </>
+                    )}
                 </div>
               </div>
             </Col>

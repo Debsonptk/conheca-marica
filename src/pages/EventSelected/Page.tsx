@@ -4,8 +4,10 @@ import AppleStore from 'Assets/AppleStore.png'
 import GooglePlay from 'Assets/GooglePlay.png'
 import { getDate, getHours, getYear } from 'date-fns'
 import { Col, Container, Row, Spinner } from 'react-bootstrap'
+import { AiOutlineCheckCircle } from 'react-icons/ai'
 import { FaRegMoneyBillAlt } from 'react-icons/fa'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
+import SVG from 'react-inlinesvg'
 import { Link, useParams } from 'react-router-dom'
 
 import { useEvent } from 'context/EventContext'
@@ -162,6 +164,36 @@ const EventoSelecionado: React.FC = () => {
                         </div>
                       </div>
                     )}
+                  </>
+                )}
+                {event && event?.viajantes && event.viajantes.length > 0 && (
+                  <>
+                    <div className="border-bottom border-secondary mb-3 pt-3">
+                      <h4>Tipos de Viajantes</h4>
+                    </div>
+                    <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
+                      {event?.viajantes.map((viajante) => (
+                        <Col key={viajante.label} className="d-flex px-3 pb-3">
+                          <AiOutlineCheckCircle size={22} color="#6ebd00" />
+                          <p className="px-2">{viajante.label}</p>
+                        </Col>
+                      ))}
+                    </Row>
+                  </>
+                )}
+                {event && event?.restricoes && event?.restricoes.length > 0 && (
+                  <>
+                    <div className="border-bottom border-secondary mb-3 pt-3">
+                      <h4>Restrições</h4>
+                    </div>
+                    <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
+                      {event.restricoes.map((i) => (
+                        <Col key={i?.label} className="d-flex px-3 pb-3">
+                          <SVG src={i.icone} fill="#6ebd00" />
+                          <p className="px-2">{i.label}</p>
+                        </Col>
+                      ))}
+                    </Row>
                   </>
                 )}
               </div>

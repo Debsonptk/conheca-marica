@@ -144,7 +144,7 @@ const ComercioLocal: React.FC = () => {
                       // eslint-disable-next-line react/jsx-no-useless-fragment
                       <>
                         {store?.redes.map((rede) => (
-                          <div className="d-flex mt-3" key={rede.nome}>
+                          <div className="d-flex mt-3" key={rede.url}>
                             <div>
                               <BsFacebook size={22} color="#6ebd00" />
                             </div>
@@ -167,7 +167,7 @@ const ComercioLocal: React.FC = () => {
                         <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
                           {store.estruturas.map((structure) => (
                             <Col
-                              key={structure.label}
+                              key={structure?.label}
                               className="d-flex px-3 pb-3"
                             >
                               <SVG src={structure.icone} fill="#6ebd00" />
@@ -184,7 +184,7 @@ const ComercioLocal: React.FC = () => {
                         </div>
                         <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
                           {store.formas_pagamento.map((pay) => (
-                            <Col key={pay.label} className="d-flex px-3 pb-3">
+                            <Col key={pay.icone} className="d-flex px-3 pb-3">
                               <AiOutlineCheckCircle size={22} color="#6ebd00" />
                               <p className="px-2">{pay.label}</p>
                             </Col>
@@ -192,6 +192,26 @@ const ComercioLocal: React.FC = () => {
                         </Row>
                       </>
                     )}
+                    {store &&
+                      store?.restricoes &&
+                      store?.restricoes.length > 0 && (
+                        <>
+                          <div className="border-bottom border-secondary mb-3 pt-3">
+                            <h4>Restrições</h4>
+                          </div>
+                          <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
+                            {store.restricoes.map((structure) => (
+                              <Col
+                                key={structure?.label}
+                                className="d-flex px-3 pb-3"
+                              >
+                                <SVG src={structure.icone} fill="#6ebd00" />
+                                <p className="px-2">{structure.label}</p>
+                              </Col>
+                            ))}
+                          </Row>
+                        </>
+                      )}
                   </div>
                 </div>
               </div>

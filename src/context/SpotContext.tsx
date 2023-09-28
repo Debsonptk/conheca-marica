@@ -48,11 +48,11 @@ export const SpotsProvider: React.FC<ISpotProviderProps> = ({ children }) => {
     }
   }, [])
 
-  const fetchSpot = useCallback(async () => {
+  const fetchSpot = useCallback(async (id: number | string) => {
     setIsLoading(true)
 
     try {
-      const response = await Api.get('/pontos')
+      const response = await Api.get(`/pontos/${id}`)
       setSpot(response.data.item)
     } catch (e) {
       // eslint-disable-next-line no-console

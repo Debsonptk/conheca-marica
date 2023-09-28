@@ -54,7 +54,7 @@ export const MenuContainer = styled.div<IMenuContainerProps>`
   justify-content: start;
   background: rgba(17, 18, 17, 0.91);
   animation: ${(props) => (props.isVisible ? enter : leave)} 0.2s ease-out;
-  padding: 10px;
+  padding: 15px;
 
   > svg {
     position: absolute;
