@@ -47,7 +47,7 @@ const EventoSelecionado: React.FC = () => {
   return (
     <>
       <Header />
-      {event && event.images && event.images.length <= 2 && (
+      {event && event.images && event.images.length <= 3 && (
         <div className="d-flex justify-content-between">
           {event?.images.map((banner) => (
             <ImageDiv

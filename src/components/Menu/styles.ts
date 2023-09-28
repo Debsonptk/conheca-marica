@@ -26,7 +26,7 @@ const fadeOut = keyframes`
 `
 const enter = keyframes`
     from{
-        right: -160px;
+        right: -300pxpx;
     }
     to{
         right: 0;
@@ -37,7 +37,7 @@ const leave = keyframes`
         right: 0;
     }
     to{
-        right: -160px;
+        right: -300pxpx;
     }
 `
 
@@ -53,7 +53,7 @@ export const MenuContainer = styled.div<IMenuContainerProps>`
   align-items: center;
   justify-content: start;
   background: rgba(17, 18, 17, 0.91);
-  animation: ${(props) => (props.isVisible ? enter : leave)} 0.2s ease-out;
+  animation: ${(props) => (props.isVisible ? enter : leave)} 0.4s ease-out;
   padding: 15px;
 
   > svg {

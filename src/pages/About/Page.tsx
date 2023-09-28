@@ -1,8 +1,10 @@
 import { memo, useEffect } from 'react'
 
-import { Container } from 'react-bootstrap'
+import { Container, Spinner } from 'react-bootstrap'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
+
+import { useAbout } from 'context/AboutContext'
 
 import Footer from 'components/Footer'
 import Header from 'components/Header'
@@ -11,9 +13,15 @@ import useTitle from 'hooks/useTitle'
 
 const SobreACidade: React.FC = () => {
   const setTitle = useTitle()
+  const { isLoading, about, fetchAbout } = useAbout()
 
   useEffect(() => {
     setTitle('Sobre a cidade | Conheça Maricá')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    fetchAbout()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -21,6 +29,11 @@ const SobreACidade: React.FC = () => {
     <>
       <Header />
       <Container>
+        {isLoading && (
+          <div className="d-flex justify-content-center">
+            <Spinner animation="border" variant="secondary" />
+          </div>
+        )}
         <div className="d-flex align-items-center pt-3">
           <Link to="/">
             <div className="d-flex align-items-center">
