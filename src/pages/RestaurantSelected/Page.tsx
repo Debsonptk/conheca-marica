@@ -87,11 +87,11 @@ const BaresERestaurantes: React.FC = () => {
                       <TagCategory category={category} />
                     </div>
                   ))}
-                <div className="fs-5 pt-2">
+                <div className="fs-5 pt-2 pb-5">
                   <p>{restaurant?.descricao_t}</p>
                 </div>
                 <div>
-                  <div className="border-bottom border-secondary mb-3 pt-3">
+                  <div className="border-bottom border-secondary mb-3 pt-1">
                     <h4>Sobre</h4>
                   </div>
                   {restaurant?.addresses != null && (

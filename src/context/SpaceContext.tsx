@@ -9,11 +9,11 @@ import {
 
 import Api from 'services/Api'
 
-import { CategorySpaceType, SpaceType } from 'types/SpaceType'
+import { CategorySpaceType, ItemSpaceType, SpaceType } from 'types/SpaceType'
 
 interface IContextProps {
   isLoading: boolean
-  space: SpaceType | null
+  space: ItemSpaceType | null
   spaces: SpaceType[]
   spaceCategory: CategorySpaceType[]
   fetchSpaces: () => Promise<void>
@@ -29,7 +29,7 @@ export const ReactContext = createContext<IContextProps>({} as IContextProps)
 
 export const SpacesProvider: React.FC<ISpaceProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false)
-  const [space, setSpace] = useState<SpaceType | null>(null)
+  const [space, setSpace] = useState<ItemSpaceType | null>(null)
   const [spaces, setSpaces] = useState<SpaceType[]>([])
   const [spaceCategory, setSpaceCategory] = useState<CategorySpaceType[]>([])
 
