@@ -12,19 +12,19 @@ import Titles from 'components/Titles'
 import useTitle from 'hooks/useTitle'
 
 const Spot: React.FC = () => {
-  const { id } = useParams()
   const setTitle = useTitle()
-  const { isLoading, fetchSpot, spot } = useSpots()
+  const { isLoading, spot, fetchSpot } = useSpots()
+  const { id } = useParams()
 
   useEffect(() => {
-    setTitle('Pontos Turísticos | Conheça Maricá')
+    if (spot?.nome) setTitle(`${spot?.nome} | Conheça Maricá`)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [spot?.nome])
 
   useEffect(() => {
-    if (id) fetchSpot(id)
+    if (id) fetchSpot(Number(id))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, fetchSpot])
+  }, [id])
 
   return (
     <>

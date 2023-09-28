@@ -9,12 +9,12 @@ import {
 
 import Api from 'services/Api'
 
-import { CategoryStoreType, StoreType } from 'types/StoreType'
+import { CategoryStoreType, ItemStoreType, StoreType } from 'types/StoreType'
 
 interface IContextProps {
   isLoading: boolean
   stores: StoreType[]
-  store: StoreType | null
+  store: ItemStoreType | null
   categoryStore: CategoryStoreType[]
   fetchStores: () => Promise<void>
   fetchStore: (id: number | string) => Promise<void>
@@ -30,7 +30,7 @@ export const ReactContext = createContext<IContextProps>({} as IContextProps)
 export const StoresProvider: React.FC<IStoreProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [stores, setStores] = useState<StoreType[]>([])
-  const [store, setStore] = useState<StoreType | null>(null)
+  const [store, setStore] = useState<ItemStoreType | null>(null)
   const [categoryStore, setCategoryStore] = useState<CategoryStoreType[]>([])
 
   const fetchStores = useCallback(async () => {

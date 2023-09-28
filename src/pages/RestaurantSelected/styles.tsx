@@ -17,3 +17,7 @@ export const ImageDiv = styled.div<ICoverImgProps>`
   background-size: cover;
   background-position: center center;
 `
+export const IconDiv = styled.div`
+  color: #6ebd00;
+  margin-right: 5px;
+`

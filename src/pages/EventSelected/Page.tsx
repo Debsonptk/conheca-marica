@@ -25,7 +25,7 @@ import {
 
 import useTitle from 'hooks/useTitle'
 
-import { ContainerBg } from './styles'
+import { ContainerBg, ImageDiv } from './styles'
 
 const EventoSelecionado: React.FC = () => {
   const setTitle = useTitle()
@@ -45,6 +45,17 @@ const EventoSelecionado: React.FC = () => {
   return (
     <>
       <Header />
+      {event && event.images && event.images.length <= 2 && (
+        <div className="d-flex justify-content-between">
+          {event?.images.map((banner) => (
+            <ImageDiv
+              key={banner.id}
+              capa={banner.src}
+              className="d-block w-100 img-fluid"
+            />
+          ))}
+        </div>
+      )}
       <ContainerBg>
         {isLoading && (
           <div className="d-flex justify-content-center pb-4 pt-4">
@@ -139,7 +150,7 @@ const EventoSelecionado: React.FC = () => {
                       ))}
                     </div>
                     {event?.gratuito === 1 && (
-                      <>
+                      <div className="pb-4">
                         <div className="border-bottom border-secondary mb-3 pt-3">
                           <h4 className="pt-3">Valor da entrada</h4>
                         </div>
@@ -149,7 +160,7 @@ const EventoSelecionado: React.FC = () => {
                           </div>
                           <p>{event?.gratuito === 1 ? 'Gratuita' : ''}</p>
                         </div>
-                      </>
+                      </div>
                     )}
                   </>
                 )}

@@ -24,7 +24,7 @@ import Titles from 'components/Titles'
 
 import useTitle from 'hooks/useTitle'
 
-import { ContainerBg } from './styles'
+import { ContainerBg, ImageDiv } from './styles'
 
 const HoteisEPousadas: React.FC = () => {
   const setTitle = useTitle()
@@ -44,6 +44,17 @@ const HoteisEPousadas: React.FC = () => {
   return (
     <>
       <Header />
+      {hotel && hotel.images && hotel?.images.length <= 4 && (
+        <div className="d-flex justify-content-between">
+          {hotel?.images.map((banner) => (
+            <ImageDiv
+              key={banner.id}
+              capa={banner.src}
+              className="d-block w-100"
+            />
+          ))}
+        </div>
+      )}
       <ContainerBg>
         {isLoading && (
           <div className="d-flex justify-content-center pb-4">

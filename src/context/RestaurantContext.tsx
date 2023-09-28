@@ -9,11 +9,15 @@ import {
 
 import Api from 'services/Api'
 
-import { CategoryRestaurantType, RestaurantType } from 'types/RestaurantType'
+import {
+  CategoryRestaurantType,
+  ItemRestaurantType,
+  RestaurantType,
+} from 'types/RestaurantType'
 
 interface IContextProps {
   restaurants: RestaurantType[]
-  restaurant: RestaurantType | null
+  restaurant: ItemRestaurantType | null
   isLoading: boolean
   restaurantCategory: CategoryRestaurantType[]
   fetchRestaurants: () => Promise<void>
@@ -31,7 +35,7 @@ export const RestaurantsProvider: React.FC<IRestaurantProviderProps> = ({
   children,
 }) => {
   const [restaurants, setRestaurants] = useState<RestaurantType[]>([])
-  const [restaurant, setRestaurant] = useState<RestaurantType | null>(null)
+  const [restaurant, setRestaurant] = useState<ItemRestaurantType | null>(null)
   const [restaurantCategory, setRestaurantCategory] = useState<
     CategoryRestaurantType[]
   >([])

@@ -28,17 +28,22 @@ export type ItemStoreType = {
     lat: number
     lng: number
   }[]
+  formas_pagamento: {
+    icone: string
+    label: string
+  }[]
   categorias: {
     id: number
     label: string
   }[]
   descricao_t: string
+  site: string
+  email: string
   dicas_t: string
   estruturas: {
     icone: string
     label: string
   }[]
-  formas_pagamento: []
   gratuito: number
   horario_funcionamento: []
   id: number

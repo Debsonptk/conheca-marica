@@ -38,9 +38,28 @@ export type ItemRestaurantType = {
     icone: string
     label: string
   }[]
-  formas_pagamento: []
+  formas_pagamento: {
+    icone: string
+    label: string
+  }[]
+  cozinhas: {
+    label: string
+  }[]
+  refeicoes: {
+    label: string
+  }[]
+  email: string
+  faixa_preco: number
+  site: string
   gratuito: number
-  horario_funcionamento: []
+  horario_funcionamento: {
+    label: string
+    is24: boolean
+    horario: {
+      abre: string
+      fecha: string
+    }
+  }[]
   id: number
   images: {
     id: number
