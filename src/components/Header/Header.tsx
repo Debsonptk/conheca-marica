@@ -1,25 +1,37 @@
 /* eslint-disable import/order */
-import { memo } from 'react'
+import { memo, useState } from 'react'
 
 import logo from 'Assets/LogoConhecaMarica.png'
 import logosmall from 'Assets/LogoMarica.png'
 import { Col, Container, Row } from 'react-bootstrap'
 import { FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
+import { GiHamburgerMenu } from 'react-icons/gi'
 import { Link } from 'react-router-dom'
 
-import MenuMobile from 'components/MenuMobile'
+import Menu from 'components/Menu'
 
 import { BackgroundContainer } from './styles'
 
 const Header: React.FC = () => {
+  const [menuIsVisible, setMenuIsVisible] = useState(false)
   return (
     <BackgroundContainer>
       <Container>
         <Row className="justify-content-between">
           <Col className="d-flex align-items-center">
             <div>
-              <MenuMobile />
+              <Menu
+                menuIsVisible={menuIsVisible}
+                setMenuIsVisible={setMenuIsVisible}
+              />
+              <GiHamburgerMenu
+                size={30}
+                color="white"
+                type="button"
+                onClick={() => setMenuIsVisible(true)}
+              />{' '}
+              <span className="text-white px-2">Menu</span>
             </div>
           </Col>
           <Col className="d-flex">
@@ -32,7 +44,7 @@ const Header: React.FC = () => {
               <img
                 src={logosmall}
                 alt="logo"
-                className="pt-4 pb-3 img-fluid d-md-none"
+                className="pt-4 pb-3 img-fluid d-md-none d-flex justify-content-center"
               />
             </Link>
           </Col>

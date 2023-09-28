@@ -9,11 +9,11 @@ import {
 
 import Api from 'services/Api'
 
-import { SpotCategoryType, SpotType } from 'types/SpotType'
+import { ItemSpotType, SpotCategoryType, SpotType } from 'types/SpotType'
 
 interface IContextProps {
   isLoading: boolean
-  spot: SpotType | null
+  spot: ItemSpotType | null
   spots: SpotType[]
   spotCategory: SpotCategoryType[]
   fetchSpots: () => Promise<void>
@@ -29,7 +29,7 @@ export const ReactContext = createContext<IContextProps>({} as IContextProps)
 
 export const SpotsProvider: React.FC<ISpotProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false)
-  const [spot, setSpot] = useState<SpotType | null>(null)
+  const [spot, setSpot] = useState<ItemSpotType | null>(null)
   const [spots, setSpots] = useState<SpotType[]>([])
   const [spotCategory, setSpotCategory] = useState<SpotCategoryType[]>([])
 

@@ -34,14 +34,26 @@ export type ItemSpotType = {
     label: string
   }[]
   descricao_t: string
+  site: string
+  email: string
   dicas_t: string
   estruturas: {
     icone: string
     label: string
   }[]
-  formas_pagamento: []
+  formas_pagamento: {
+    icone: string
+    label: string
+  }[]
   gratuito: number
-  horario_funcionamento: []
+  horario_funcionamento: {
+    label: string
+    is24: boolean
+    horario: {
+      abre: string
+      fecha: string
+    }
+  }[]
   id: number
   images: {
     id: number
@@ -68,5 +80,16 @@ export type ItemSpotType = {
   }[]
   viajantes: {
     label: string
+  }[]
+  espacos: {
+    id: number
+    espaco_id: number
+    nome: string
+    descricao: string
+    area: number
+    pe_direito: number
+    medidas: string
+    capacidade: number
+    ordem: number
   }[]
 }
