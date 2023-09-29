@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
     :root{
@@ -27,4 +27,9 @@ export default createGlobalStyle`
     a:hover {
         color: inherit;
     }
+`
+export const MainStyled = styled.main`
+  background-color: #f5f5f5;
+  padding-bottom: 2.5rem;
+  min-height: 70vh;
 `
