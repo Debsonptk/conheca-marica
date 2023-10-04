@@ -17,6 +17,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { useHotels } from 'context/HotelContext'
 
+import BannerCarousel from 'components/BannerCarousel'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 import TagCategory from 'components/TagCategory'
@@ -24,7 +25,7 @@ import Titles from 'components/Titles'
 
 import useTitle from 'hooks/useTitle'
 
-import { ContainerBg, ImageDiv } from './styles'
+import { ContainerBg } from './styles'
 
 const HoteisEPousadas: React.FC = () => {
   const setTitle = useTitle()
@@ -44,17 +45,7 @@ const HoteisEPousadas: React.FC = () => {
   return (
     <>
       <Header />
-      {hotel && hotel.images && hotel?.images.length <= 4 && (
-        <div className="d-flex justify-content-between">
-          {hotel?.images.map((banner) => (
-            <ImageDiv
-              key={banner.id}
-              capa={banner.src}
-              className="d-block w-100"
-            />
-          ))}
-        </div>
-      )}
+      {!isLoading && hotel && <BannerCarousel itemCategory={hotel} />}
       <ContainerBg>
         {isLoading && (
           <div className="d-flex justify-content-center pb-4">

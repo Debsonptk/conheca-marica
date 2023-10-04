@@ -13,6 +13,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { useSpots } from 'context/SpotContext'
 
+import BannerCarousel from 'components/BannerCarousel'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 import TagCategory from 'components/TagCategory'
@@ -20,7 +21,7 @@ import Titles from 'components/Titles'
 
 import useTitle from 'hooks/useTitle'
 
-import { ContainerBg, ImageDiv } from './styles'
+import { ContainerBg } from './styles'
 
 const Spot: React.FC = () => {
   const setTitle = useTitle()
@@ -40,17 +41,7 @@ const Spot: React.FC = () => {
   return (
     <>
       <Header />
-      {spot && spot.images && spot?.images.length <= 4 && (
-        <div className="d-flex justify-content-between">
-          {spot?.images.map((banner) => (
-            <ImageDiv
-              key={banner.id}
-              capa={banner.src}
-              className="d-block w-100"
-            />
-          ))}
-        </div>
-      )}
+      {!isLoading && spot && <BannerCarousel itemCategory={spot} />}
       <ContainerBg>
         <Container>
           {isLoading && (

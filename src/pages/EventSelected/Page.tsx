@@ -12,6 +12,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { useEvent } from 'context/EventContext'
 
+import BannerCarousel from 'components/BannerCarousel'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 import TagCategory from 'components/TagCategory'
@@ -27,7 +28,7 @@ import {
 
 import useTitle from 'hooks/useTitle'
 
-import { ContainerBg, ImageDiv } from './styles'
+import { ContainerBg } from './styles'
 
 const EventoSelecionado: React.FC = () => {
   const setTitle = useTitle()
@@ -47,17 +48,7 @@ const EventoSelecionado: React.FC = () => {
   return (
     <>
       <Header />
-      {event && event.images && event.images.length <= 3 && (
-        <div className="d-flex justify-content-between">
-          {event?.images.map((banner) => (
-            <ImageDiv
-              key={banner.id}
-              capa={banner.src}
-              className="d-block w-100 img-fluid"
-            />
-          ))}
-        </div>
-      )}
+      {!isLoading && event && <BannerCarousel itemCategory={event} />}
       <ContainerBg>
         {isLoading && (
           <div className="d-flex justify-content-center pb-4 pt-4">

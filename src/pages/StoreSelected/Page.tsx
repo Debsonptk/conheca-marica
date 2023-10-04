@@ -12,6 +12,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { useStores } from 'context/StoreContext'
 
+import BannerCarousel from 'components/BannerCarousel'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 import TagCategory from 'components/TagCategory'
@@ -19,7 +20,7 @@ import Titles from 'components/Titles'
 
 import useTitle from 'hooks/useTitle'
 
-import { ContainerBg, ImageDiv } from './styles'
+import { ContainerBg } from './styles'
 
 const ComercioLocal: React.FC = () => {
   const setTitle = useTitle()
@@ -39,17 +40,7 @@ const ComercioLocal: React.FC = () => {
   return (
     <>
       <Header />
-      {store && store?.images && store?.images.length <= 4 && (
-        <div className="d-flex justify-content-between">
-          {store?.images.map((banner) => (
-            <ImageDiv
-              key={banner.id}
-              capa={banner.src}
-              className="d-block w-100"
-            />
-          ))}
-        </div>
-      )}
+      {!isLoading && store && <BannerCarousel itemCategory={store} />}
       <ContainerBg>
         <Container>
           {isLoading && (

@@ -9,9 +9,8 @@ export const ContainerBg = styled.div`
 `
 
 export const ImageDiv = styled.div<ICoverImgProps>`
-  background-image: ${({ capa }) => `url(${capa})`};
   width: 100%;
-  height: 350px;
+  height: 200px;
   background-size: cover;
   background-position: center center;
 `

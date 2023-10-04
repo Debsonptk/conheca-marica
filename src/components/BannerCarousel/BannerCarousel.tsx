@@ -1,6 +1,8 @@
-import { memo } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 
-import Slider from 'react-slick'
+import { Ratio } from 'react-bootstrap'
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
+import Slider, { Settings } from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
@@ -9,64 +11,177 @@ import { ItemHotelType } from 'types/HotelType'
 import { ItemRestaurantType } from 'types/RestaurantType'
 import { ItemSpaceType } from 'types/SpaceType'
 import { ItemSpotType } from 'types/SpotType'
+import { ItemStoreType } from 'types/StoreType'
 
-import { CoverBanner } from './styles'
+import { ArrowDiv, ArrowDivPrevious } from './styles'
 
-interface IItemsProps {
-  banner:
+interface ISlideProps {
+  itemCategory:
     | ItemEventType
     | ItemHotelType
     | ItemRestaurantType
     | ItemSpaceType
     | ItemSpotType
+    | ItemStoreType
 }
 
-const BannerCarousel: React.FC<IItemsProps> = ({ banner }) => {
-  const responsive = [
-    {
-      breakpoint: 1400,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
+const NewSliderCarouselComponent: React.FC<ISlideProps> = ({
+  itemCategory,
+}) => {
+  const customeSlider = useRef<Slider>(null)
+
+  const [sliderSettings, setSliderSettings] = useState<Settings>({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 3,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
       },
-    },
-    {
-      breakpoint: 750,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        initialSlide: 2,
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: false,
+        },
       },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
+    ],
+  })
+
+  useEffect(() => {
+    setSliderSettings({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 3,
+      arrows: false,
+      responsive: [
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+          },
+        },
+        {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: false,
+          },
+        },
+      ],
+    })
+  }, [])
+
+  const gotoNext = (): void => {
+    if (customeSlider.current) {
+      customeSlider.current.slickNext()
+    }
+  }
+
+  const gotoPrev = (): void => {
+    if (customeSlider.current) {
+      customeSlider.current.slickPrev()
+    }
+  }
+
+  const settingsSmall = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 0,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 780,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 0,
+          arrows: false,
+        },
       },
-    },
-  ]
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+    ],
+  }
+
   return (
-    <Slider
-      className="mb-4"
-      dots
-      infinite
-      speed={500}
-      autoplay
-      autoplaySpeed={3000}
-      slidesToShow={4}
-      slidesToScroll={2}
-      initialSlide={0}
-      responsive={responsive}
-      pauseOnHover
-    >
-      {banner.images.map((img) => (
-        <div key={img.id}>
-          <CoverBanner style={{ backgroundImage: `url(${img.src})` }} />
-        </div>
-      ))}
-    </Slider>
+    <>
+      {itemCategory.images.length >= 4 && (
+        <>
+          <ArrowDivPrevious
+            type="button"
+            className="d-none d-lg-inline-block"
+            onClick={gotoPrev}
+          >
+            <MdKeyboardArrowLeft size={50} />
+          </ArrowDivPrevious>
+          <ArrowDiv
+            type="button"
+            className="d-none d-lg-inline-block"
+            onClick={gotoNext}
+          >
+            <MdKeyboardArrowRight size={50} />
+          </ArrowDiv>
+          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+          <Slider {...sliderSettings} ref={customeSlider}>
+            {itemCategory.images.map((imagem) => (
+              <div key={imagem.id}>
+                <Ratio
+                  aspectRatio="1x1"
+                  style={{
+                    backgroundImage: `url(${imagem.src})`,
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center center',
+                  }}
+                >
+                  <div />
+                </Ratio>
+              </div>
+            ))}
+          </Slider>
+        </>
+      )}
+      {itemCategory.images.length < 4 && (
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        <Slider {...settingsSmall}>
+          {itemCategory.images.map((imagem) => (
+            <div key={imagem.id}>
+              <Ratio
+                aspectRatio="1x1"
+                style={{
+                  backgroundImage: `url(${imagem.src})`,
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center center',
+                }}
+              >
+                <div />
+              </Ratio>
+            </div>
+          ))}
+        </Slider>
+      )}
+    </>
   )
 }
-
-export default memo(BannerCarousel)
+export default memo(NewSliderCarouselComponent)

@@ -17,6 +17,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { useRestaurants } from 'context/RestaurantContext'
 
+import BannerCarousel from 'components/BannerCarousel'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 import TagCategory from 'components/TagCategory'
@@ -24,7 +25,7 @@ import Titles from 'components/Titles'
 
 import useTitle from 'hooks/useTitle'
 
-import { ContainerBg, IconDiv, ImageDiv } from './styles'
+import { ContainerBg, IconDiv } from './styles'
 
 const BaresERestaurantes: React.FC = () => {
   const setTitle = useTitle()
@@ -55,17 +56,7 @@ const BaresERestaurantes: React.FC = () => {
   return (
     <>
       <Header />
-      {restaurant && restaurant.images && restaurant?.images.length <= 4 && (
-        <div className="d-flex justify-content-between">
-          {restaurant?.images.map((banner) => (
-            <ImageDiv
-              key={banner.id}
-              capa={banner.src}
-              className="d-block w-100"
-            />
-          ))}
-        </div>
-      )}
+      {!isLoading && restaurant && <BannerCarousel itemCategory={restaurant} />}
       <ContainerBg>
         <Container>
           {isLoading && (

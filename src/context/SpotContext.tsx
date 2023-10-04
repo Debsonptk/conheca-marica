@@ -19,6 +19,7 @@ interface IContextProps {
   fetchSpots: () => Promise<void>
   fetchSpot: (id: number | string) => Promise<void>
   fetchSpotCategory: (id: number) => Promise<void>
+  searchSpots: (search: string) => Promise<void>
 }
 
 interface ISpotProviderProps {
@@ -76,6 +77,23 @@ export const SpotsProvider: React.FC<ISpotProviderProps> = ({ children }) => {
     }
   }, [])
 
+  const searchSpots = useCallback(async (search: string) => {
+    setIsLoading(true)
+    const params = {
+      busca: search,
+    }
+
+    try {
+      const response = await Api.get('/pontos/busca', { params })
+      setSpots(response.data.collection)
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
   useEffect(() => {
     fetchSpots()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -92,6 +110,7 @@ export const SpotsProvider: React.FC<ISpotProviderProps> = ({ children }) => {
           fetchSpots,
           fetchSpot,
           fetchSpotCategory,
+          searchSpots,
         }),
         [
           isLoading,
@@ -101,6 +120,7 @@ export const SpotsProvider: React.FC<ISpotProviderProps> = ({ children }) => {
           fetchSpots,
           fetchSpot,
           fetchSpotCategory,
+          searchSpots,
         ],
       )}
     >
