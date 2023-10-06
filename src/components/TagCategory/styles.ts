@@ -11,3 +11,7 @@ export const TagContainer = styled.p`
     background-color: #b5e030;
   }
 `
+export const SubFooter = styled.p`
+  background-color: #2d677f;
+  color: #fff;
+`

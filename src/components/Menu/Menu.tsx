@@ -38,8 +38,8 @@ const MenuMobile: React.FC<IMenuMobileProps> = ({
           size={22}
           onClick={() => setMenuIsVisible(false)}
         />
-        <nav>
-          <Link to="/">
+        <nav className="pt-5">
+          <Link to="/" className="pt-5">
             <AiFillHome size={20} />
             <span className="px-2">Inicial</span>
           </Link>
