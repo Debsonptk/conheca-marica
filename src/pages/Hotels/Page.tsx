@@ -31,7 +31,7 @@ const HoteisEPousadas: React.FC = () => {
             <Spinner animation="border" variant="secondary" />
           </div>
         )}
-        <div className="d-flex -flex-wrap pt-2 pb-4">
+        <div className="d-flex flex-wrap pt-2 pb-4">
           {!isLoading &&
             Array.isArray(hotelCategory) &&
             hotelCategory.map((category) => (
